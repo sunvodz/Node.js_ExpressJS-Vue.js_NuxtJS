@@ -13,7 +13,7 @@ task.get('/tasks', (req, res, next) => {
     })
 })
 
-task.post('/task', (req, res, next) => {
+task.post('/tasks', (req, res, next) => {
   if (!req.body.task_title,!req.body.task_detail) {
     res.status(400)
     res.json({
@@ -30,7 +30,7 @@ task.post('/task', (req, res, next) => {
   }
 })
 
-task.delete('/task/:id', (req, res, next) => {
+task.delete('/tasks/:id', (req, res, next) => {
   Task.destroy({
     where: {
       id: req.params.id
@@ -45,7 +45,7 @@ task.delete('/task/:id', (req, res, next) => {
 })
 
 // Update Task
-task.put('/task/:id', (req, res, next) => {
+task.put('/tasks/:id', (req, res, next) => {
   if (!req.body.task_title) {
     res.status(400)
     res.json({

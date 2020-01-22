@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 var Users = require('./routes/Users')
 
 app.use('/users', Users)
-app.use('/tasks', Tasks)
+app.use('/', Tasks)
 
 app.listen(port, function() {
   console.log('Server started on port ' + port)
