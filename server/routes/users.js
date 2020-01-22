@@ -11,7 +11,7 @@ process.env.SECRET_KEY = 'secret'
 
 users.post('/register', (req, res) => {
   const userData = {
-    name: req.body.name,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   }
@@ -27,7 +27,7 @@ users.post('/register', (req, res) => {
           userData.password = hash
           User.create(userData)
             .then(user => {
-              res.json({ status: user.name + 'Registered!' })
+              res.json({ status: user.username + ' Registered!' })
             })
             .catch(err => {
               res.send('error: ' + err)
@@ -62,6 +62,26 @@ users.post('/login', (req, res) => {
     })
     .catch(err => {
       res.status(400).json({ error: err })
+    })
+})
+
+users.get('/profile', (req, res) => {
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+  User.findOne({
+    where: {
+      id: decoded.id
+    }
+  })
+    .then(user => {
+      if (user) {
+        res.json(user)
+      } else {
+        res.send('User does not exist')
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
     })
 })
 

@@ -10,9 +10,13 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css' }
     ]
   },
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -32,6 +36,22 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+    }
+  },
+
+  axios: {
+    baseURL: 'http://localhost:8080/'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/users/login', method: 'post', propertyName: 'token' },
+          user: { url: '/users', method: 'get', propertyName: false },
+          logout: false
+        }
       }
     }
   }

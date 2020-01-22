@@ -10,6 +10,10 @@ $ cd client
 $ npm install
 $ npm run dev
 Go http://localhost:3000/
+
+Login
+$ npm install @nuxtjs/auth @nuxtjs/axios --save
+
 ```
 
 # Server
