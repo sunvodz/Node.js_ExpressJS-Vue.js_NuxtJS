@@ -55,43 +55,49 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification'
+import Notification from "~/components/Notification";
 
 export default {
   components: {
-    Notification,
+    Notification
   },
 
   data() {
     return {
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
       error: null
-    }
+    };
   },
 
   methods: {
-    async register() {
-      try {
-        await this.$axios.post('users/register', {
-          username: this.username,
-          email: this.email,
-          password: this.password
+    /**
+     * [registerUser used to register the user]
+     * @return {[type]} [none]
+     */
+    register() {
+      const { username, email, password } = this;
+      const data = { username, email, password };
+      const URL = "http://localhost:8080/users/register";
+      this.$axios({
+        method: "post",
+        url: URL,
+        headers: {
+          Accept: "application/json",
+          Content: "application/json"
+        },
+        data: data
+      })
+        .then(res => {
+          sessionStorage.setItem("token", res.data.token);
+          this.$router.push("/login");
         })
-
-        await this.$auth.loginWith('users/local', {
-          data: {
-            email: this.email,
-            password: this.password
-          },
-        })
-
-        this.$router.push('/')
-      } catch (e) {
-        this.error = e.response.data.message
-      }
+        .catch(err => {
+          // eslint-disable-next-line
+          console.log(err);
+        });
     }
   }
-}
+};
 </script>

@@ -41,36 +41,47 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification'
+import Notification from "~/components/Notification";
 
 export default {
   components: {
-    Notification,
+    Notification
   },
-
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       error: null
-    }
+    };
   },
-
   methods: {
-    async login() {
-      try {
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
+    /**
+     * [loginUser used to login the user]
+     * @return {[type]} [none]
+     */
+    login() {
+      const { email, password } = this;
+      const data = { email, password };
+      const URL = "http://localhost:8080/users/login";
+      this.$axios({
+        method: "post",
+        url: URL,
+        headers: {
+          Accept: "application/json",
+          Content: "application/json"
+        },
+        data: data
+      })
+        .then(res => {
+          sessionStorage.setItem("token", res.data.token);
+          this.$router.push("/profile");
         })
-
-        this.$router.push('/')
-      } catch (e) {
-        this.error = "รหัสผ่านผิด"
-      }
+        .catch(err => {
+          alert("Wrong email/password");
+          // eslint-disable-next-line
+          console.log(err);
+        });
     }
   }
-}
+};
 </script>

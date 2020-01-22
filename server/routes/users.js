@@ -85,4 +85,8 @@ users.get('/profile', (req, res) => {
     })
 })
 
+users.get('/logout', function(req, res) {
+  res.status(200).send({ auth: false, token: null });
+});
+
 module.exports = users

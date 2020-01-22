@@ -1,16 +1,13 @@
 <template>
   <section class="section">
     <div class="container">
-      <h2 class="title">My Profile</h2>
+      <h2 class="title">Welcome</h2>
       <div class="content">
-        <p>
-          <strong>Nmae:</strong>
-          {{ loggedInUser.username }}
-        </p>
-        <p>
-          <strong>Email:</strong>
-          {{ loggedInUser.email }}
-        </p>
+
+          <button @click="logOut">
+            Log out
+          </button>
+
       </div>
     </div>
   </section>
@@ -20,9 +17,37 @@
 import { mapGetters } from "vuex";
 
 export default {
-  middleware: 'auth',
   computed: {
     ...mapGetters(["loggedInUser"])
+  },
+  data() {
+    return {
+      username: ""
+    };
+  },
+  methods: {
+    /**
+     * [logOut used to logout user]
+     * @return {[type]} [none]
+     */
+    logOut() {
+      const URL = `http://localhost:8080/users/logout`;
+      this.$axios({
+        method: "get",
+        url: URL,
+        headers: {
+          Accept: "application/json"
+        }
+      })
+        .then(_ => {
+          sessionStorage.removeItem("token");
+          this.$router.push("/login");
+        })
+        .catch(err => {
+          // eslint-disable-next-line
+          console.log(err);
+        });
+    }
   }
 };
 </script>

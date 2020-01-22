@@ -1,4 +1,4 @@
-# Node.js + Vue.js
+# Node.js + Vue.js + MySQL
   - Express.JS 
   - Nuxt.js
 
@@ -12,7 +12,7 @@ $ npm run dev
 Go http://localhost:3000/
 
 Login
-$ npm install @nuxtjs/auth @nuxtjs/axios --save
+$ npm install vue-axios axios @nuxtjs/proxy
 
 ```
 
@@ -21,5 +21,5 @@ $ npm install @nuxtjs/auth @nuxtjs/axios --save
 $ npm install -g express-generator
 $ express
 $ npm install mysql --save
-Go http://localhost:8000/
+Go http://localhost:8080/
 ```

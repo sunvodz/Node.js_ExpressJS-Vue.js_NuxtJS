@@ -1,9 +1,9 @@
 var express = require('express')
-var router = express.Router()
+var task = express.Router()
 const Task = require('../models/Task')
 
 // Get All Tasks
-router.get('/tasks', (req, res, next) => {
+task.get('/tasks', (req, res, next) => {
   Task.findAll()
     .then(tasks => {
       res.json(tasks)
@@ -13,7 +13,7 @@ router.get('/tasks', (req, res, next) => {
     })
 })
 
-router.post('/task', (req, res, next) => {
+task.post('/task', (req, res, next) => {
   if (!req.body.task_title,!req.body.task_detail) {
     res.status(400)
     res.json({
@@ -30,7 +30,7 @@ router.post('/task', (req, res, next) => {
   }
 })
 
-router.delete('/task/:id', (req, res, next) => {
+task.delete('/task/:id', (req, res, next) => {
   Task.destroy({
     where: {
       id: req.params.id
@@ -45,7 +45,7 @@ router.delete('/task/:id', (req, res, next) => {
 })
 
 // Update Task
-router.put('/task/:id', (req, res, next) => {
+task.put('/task/:id', (req, res, next) => {
   if (!req.body.task_title) {
     res.status(400)
     res.json({
@@ -64,4 +64,4 @@ router.put('/task/:id', (req, res, next) => {
   }
 })
 
-module.exports = router
+module.exports = task

@@ -14,6 +14,5 @@ const sequelize = new Sequelize("testnodejs", "root", "", {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;

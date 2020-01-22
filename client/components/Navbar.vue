@@ -16,7 +16,7 @@
             v-if="isAuthenticated"
           >
             <a class="navbar-link">
-              {{ loggedInUser.username }}
+              {{ loggedInUser }}
             </a>
             <div class="navbar-dropdown">
               <nuxt-link class="navbar-item" to="/profile"
@@ -37,16 +37,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(["isAuthenticated", "loggedInUser"])
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
-    async logout() {
-      await this.$auth.logout();
-    }
-  }
-};
+  async logout() {
+    await this.$auth.logout();
+  },
+},
+}
 </script>
