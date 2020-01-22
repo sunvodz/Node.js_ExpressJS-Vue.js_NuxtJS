@@ -1,4 +1,12 @@
-# client
+# client 
+```
+$ npm install -g vue-cli
+$ vue init nuxt-community/starter-template client
+$ cd client
+$ npm install
+$ npm run dev
+Go http://localhost:3000/
+```
 
 > Nuxt.js project
 

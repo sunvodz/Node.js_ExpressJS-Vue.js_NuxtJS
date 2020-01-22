@@ -13,12 +13,9 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "material-design-icons-iconfont": "^5.0.1",
-    "nuxt": "^2.0.0",
-    "vuetify": "^2.2.4"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.10.2",
     "babel-eslint": "^10.0.1",
     "eslint": "^4.19.1",
     "eslint-friendly-formatter": "^4.0.1",

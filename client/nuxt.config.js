@@ -2,7 +2,6 @@ module.exports = {
   /*
   ** Headers of the page
   */
-  plugins: ['~/plugins/vuetify'],
   head: {
     title: 'client',
     meta: [
@@ -21,16 +20,7 @@ module.exports = {
   /*
   ** Build configuration
   */
-  buildModules: [
-    // Simple usage
-    '@nuxtjs/vuetify',
-
-    // With options
-    ['@nuxtjs/vuetify', { /* module options */ }]
-  ],
-
   build: {
-    vender: ['vuetify'],
     /*
     ** Run ESLint on save
     */
